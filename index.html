@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thank You - Marcio Mendes Tech Support</title>
+    <title>Marcio Mendes Tech Support - Professional Technical Support</title>
     <style>
         :root {
             --primary: #2563eb;
@@ -11,6 +11,8 @@
             --secondary: #0f172a;
             --light: #f8fafc;
             --accent: #f97316;
+            --gray: #64748b;
+            --light-gray: #e2e8f0;
         }
         
         * {
@@ -24,84 +26,835 @@
             background-color: var(--light);
             color: var(--secondary);
             line-height: 1.6;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 20px;
         }
         
         .container {
-            max-width: 600px;
+            max-width: 1200px;
             margin: 0 auto;
-            background: white;
-            padding: 40px;
-            border-radius: 15px;
+            padding: 0 20px;
+            width: 100%;
+        }
+        
+        /* Language Selector Styles */
+        .language-selector {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 8px 15px;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .language-selector select {
+            padding: 5px 10px;
+            border-radius: 5px;
+            border: 1px solid var(--light-gray);
+            background-color: white;
+            font-size: 0.9rem;
+            cursor: pointer;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        
+        .language-selector select:hover {
+            border-color: var(--primary);
+        }
+        
+        .language-selector label {
+            margin-right: 10px;
+            color: white;
+            font-size: 0.9rem;
+        }
+        
+        /* Language Content Display */
+        .pt {
+            display: none;
+        }
+        
+        /* Hide Testimonials Section */
+        .testimonials {
+            display: none;
+        }
+        
+        /* Header */
+        header {
+            background-color: var(--secondary);
+            color: white;
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
         
-        h1 {
-            color: var(--primary);
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+        
+        .contact-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .contact-header a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-header a:hover {
+            color: var(--accent);
+        }
+        
+        .contact-header i {
+            margin-right: 8px;
+            color: var(--accent);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 160px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect fill="none" width="100" height="100"/><path fill="%23ffffff" fill-opacity="0.05" d="M0 0h50v50H0zM50 50h50v50H50z"/></svg>');
+            background-size: 20px;
+        }
+        
+        .hero-content {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 2.8rem);
             margin-bottom: 20px;
-            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
         }
         
-        p {
+        .hero p {
+            font-size: clamp(1rem, 3vw, 1.2rem);
             margin-bottom: 30px;
-            font-size: 1.2rem;
-            color: var(--secondary);
+            opacity: 0.9;
         }
         
-        .back-button {
+        .cta-button {
             display: inline-block;
-            padding: 12px 30px;
+            padding: 15px 30px;
             background-color: var(--accent);
             color: white;
             text-decoration: none;
             border-radius: 30px;
             font-weight: 600;
             transition: all 0.3s ease;
+            border: 2px solid var(--accent);
         }
         
-        .back-button:hover {
-            background-color: var(--primary);
+        .cta-button:hover {
+            background-color: transparent;
             transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(249, 115, 22, 0.2);
         }
         
-        .pt {
-            display: none;
+        /* Contact Section */
+        .contact {
+            padding: 80px 0;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+        
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            align-items: start;
+        }
+        
+        .contact-info {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        .contact-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+        
+        .contact-method {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+            padding: 15px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-method:hover {
+            background-color: var(--light);
+            transform: translateX(5px);
+        }
+        
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: white;
+        }
+        
+        .contact-details h4 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: var(--secondary);
+        }
+        
+        .contact-details a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-details a:hover {
+            color: var(--primary-dark);
+        }
+        
+        .contact-form {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--secondary);
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--light-gray);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+        
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .contact-header {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .contact-header a {
+                margin: 5px 0;
+            }
+            
+            .hero {
+                padding: 140px 0 60px;
+            }
+            
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+            }
+            
+            .language-selector {
+                top: 10px;
+                right: 10px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .contact-method {
+                padding: 10px;
+            }
+        }
+        
+        /* Smooth Scroll Behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Prevent default anchor behavior */
+        a[href^="#"] {
+            text-decoration: none;
         }
     </style>
     <script>
         function changeLanguage(lang) {
+            // Hide all language content
             document.querySelectorAll('.en, .pt').forEach(el => {
                 el.style.display = 'none';
             });
+            
+            // Show selected language content
             document.querySelectorAll('.' + lang).forEach(el => {
                 el.style.display = 'block';
             });
+            
+            // Update HTML lang attribute
             document.documentElement.lang = lang;
+            
+            // Update page title
+            document.title = lang === 'en' 
+                ? 'Marcio Mendes Tech Support - Professional Technical Support'
+                : 'Marcio Mendes Tech Support - Suporte Técnico Profissional';
         }
         
+        // Initialize with English
         document.addEventListener('DOMContentLoaded', function() {
             changeLanguage('en');
+            
+            // Handle smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
         });
     </script>
 </head>
 <body>
-    <div class="container">
-        <div class="en">
-            <h1>Thank You!</h1>
-            <p>Your message has been sent successfully. We will contact you shortly.</p>
-            <a href="index.html" class="back-button">Back to Home</a>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <a href="#" class="logo">
+                <i class="fas fa-laptop-code"></i>
+                <span class="en">Marcio Mendes Tech Support</span>
+                <span class="pt">Marcio Mendes Suporte Técnico</span>
+            </a>
+            <div class="contact-header">
+                <a href="https://wa.me/19545206762" target="_blank">
+                    <i class="fab fa-whatsapp"></i> +1 954 520 6762
+                </a>
+            </div>
         </div>
         
-        <div class="pt">
-            <h1>Obrigado!</h1>
-            <p>Sua mensagem foi enviada com sucesso. Entraremos em contato em breve.</p>
-            <a href="index.html" class="back-button">Voltar para Home</a>
+        <!-- Language Selector -->
+        <div class="language-selector">
+            <label for="language-select">Language:</label>
+            <select id="language-select" onchange="changeLanguage(this.value)">
+                <option value="en">English</option>
+                <option value="pt">Português</option>
+            </select>
         </div>
-    </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <!-- English content -->
+            <div class="en">
+                <h1>Reliable Technical Support for Home and Office</h1>
+                <p>Quick and efficient solutions for all your technology problems. On-site and remote service by qualified professional.</p>
+                <a href="#contact" class="cta-button">Request Support Now</a>
+            </div>
+            
+            <!-- Portuguese content -->
+            <div class="pt">
+                <h1>Suporte Técnico Confiável para Casa e Escritório</h1>
+                <p>Soluções rápidas e eficientes para todos os seus problemas tecnológicos. Atendimento presencial e remoto por profissional qualificado.</p>
+                <a href="#contact" class="cta-button">Solicitar Suporte Agora</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2 class="en">Our Services</h2>
+                <h2 class="pt">Nossos Serviços</h2>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-print"></i>
+                    </div>
+                    <!-- English content -->
+                    <div class="en">
+                        <h3>Printer Setup</h3>
+                        <p>Installation, configuration, and maintenance of printers and multifunction devices of all brands. Resolution of connection and print quality issues.</p>
+                    </div>
+                    <!-- Portuguese content -->
+                    <div class="pt">
+                        <h3>Configuração de Impressoras</h3>
+                        <p>Instalação, configuração e manutenção de impressoras e multifuncionais de todas as marcas. Resolução de problemas de conexão e qualidade de impressão.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-wifi"></i>
+                    </div>
+                    <!-- English content -->
+                    <div class="en">
+                        <h3>Networks & Wi-Fi</h3>
+                        <p>Installation and configuration of routers, signal extenders, and optimization of your network for better performance and security.</p>
+                    </div>
+                    <!-- Portuguese content -->
+                    <div class="pt">
+                        <h3>Redes e Wi-Fi</h3>
+                        <p>Instalação e configuração de roteadores, extensores de sinal, e otimização da sua rede para melhor desempenho e segurança.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-desktop"></i>
+                    </div>
+                    <!-- English content -->
+                    <div class="en">
+                        <h3>Formatting & Optimization</h3>
+                        <p>Complete formatting with data backup, operating system installation, and essential programs. Optimization to improve your PC's performance.</p>
+                    </div>
+                    <!-- Portuguese content -->
+                    <div class="pt">
+                        <h3>Formatação e Otimização</h3>
+                        <p>Formatação completa com backup de dados, instalação de sistema operacional e programas essenciais. Otimização para melhorar o desempenho do seu PC.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <!-- English content -->
+                    <div class="en">
+                        <h3>Security & Support</h3>
+                        <p>Removal of viruses and malware, antivirus installation, creation of backup routines, and remote technical support for quick problem solving.</p>
+                    </div>
+                    <!-- Portuguese content -->
+                    <div class="pt">
+                        <h3>Segurança e Suporte</h3>
+                        <p>Remoção de vírus e malware, instalação de antivírus, criação de rotinas de backup e suporte técnico remoto para solução rápida de problemas.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="why-us">
+        <div class="container">
+            <div class="section-title">
+                <h2 class="en">Why Choose Us</h2>
+                <h2 class="pt">Por Que Nos Escolher</h2>
+            </div>
+            <div class="features-grid">
+                <div class="feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-stopwatch"></i>
+                    </div>
+                    <div class="feature-content">
+                        <!-- English content -->
+                        <div class="en">
+                            <h3>Fast Service</h3>
+                            <p>We offer prompt service and quick solutions to minimize downtime of your equipment.</p>
+                        </div>
+                        <!-- Portuguese content -->
+                        <div class="pt">
+                            <h3>Atendimento Rápido</h3>
+                            <p>Oferecemos pronto atendimento e soluções rápidas para minimizar o tempo de inatividade dos seus equipamentos.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <div class="feature-content">
+                        <!-- English content -->
+                        <div class="en">
+                            <h3>Qualified Professional</h3>
+                            <p>Technician with extensive experience and certifications to ensure a high-quality service.</p>
+                        </div>
+                        <!-- Portuguese content -->
+                        <div class="pt">
+                            <h3>Profissional Qualificado</h3>
+                            <p>Técnico com ampla experiência e certificações para garantir um serviço de alta qualidade.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-coins"></i>
+                    </div>
+                    <div class="feature-content">
+                        <!-- English content -->
+                        <div class="en">
+                            <h3>Fair Prices</h3>
+                            <p>Services with transparent and fair prices, without surprises or hidden fees.</p>
+                        </div>
+                        <!-- Portuguese content -->
+                        <div class="pt">
+                            <h3>Preços Justos</h3>
+                            <p>Serviços com preços transparentes e justos, sem surpresas ou taxas ocultas.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <div class="feature-content">
+                        <!-- English content -->
+                        <div class="en">
+                            <h3>On-site Service</h3>
+                            <p>We serve at your home or office, bringing convenience and time savings.</p>
+                        </div>
+                        <!-- Portuguese content -->
+                        <div class="pt">
+                            <h3>Atendimento a Domicílio</h3>
+                            <p>Atendemos em sua casa ou escritório, trazendo conveniência e economia de tempo.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-laptop-house"></i>
+                    </div>
+                    <div class="feature-content">
+                        <!-- English content -->
+                        <div class="en">
+                            <h3>Remote Support</h3>
+                            <p>Problem solving at a distance for simpler cases, with agility and efficiency.</p>
+                        </div>
+                        <!-- Portuguese content -->
+                        <div class="pt">
+                            <h3>Suporte Remoto</h3>
+                            <p>Resolução de problemas à distância para casos mais simples, com agilidade e eficiência.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <div class="feature-content">
+                        <!-- English content -->
+                        <div class="en">
+                            <h3>After-Service</h3>
+                            <p>Follow-up after service to ensure everything continues to work perfectly.</p>
+                        </div>
+                        <!-- Portuguese content -->
+                        <div class="pt">
+                            <h3>Pós-Atendimento</h3>
+                            <p>Acompanhamento após o serviço para garantir que tudo continue funcionando perfeitamente.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2 class="en">What Our Clients Say</h2>
+                <h2 class="pt">O Que Dizem Nossos Clientes</h2>
+            </div>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <!-- English content -->
+                        <div class="en">
+                            Excellent service! My computer was very slow and Marcio solved it quickly. Now it's working like new. Highly recommend!
+                        </div>
+                        <!-- Portuguese content -->
+                        <div class="pt">
+                            Excelente atendimento! Meu computador estava muito lento e o Marcio resolveu rapidamente. Agora está funcionando como novo. Recomendo demais!
+                        </div>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">RC</div>
+                        <div class="author-info">
+                            <h4>Roberto Carlos</h4>
+                            <!-- English content -->
+                            <div class="en">
+                                <p>Residential Client</p>
+                            </div>
+                            <!-- Portuguese content -->
+                            <div class="pt">
+                                <p>Cliente Residencial</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <!-- English content -->
+                        <div class="en">
+                            We hired the service for our small business and were very satisfied. He installed our network securely and gave us several useful tips.
+                        </div>
+                        <!-- Portuguese content -->
+                        <div class="pt">
+                            Contratamos o serviço para nossa pequena empresa e ficamos muito satisfeitos. Instalou nossa rede com segurança e ainda nos deu várias dicas úteis.
+                        </div>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">AS</div>
+                        <div class="author-info">
+                            <h4>Ana Silva</h4>
+                            <!-- English content -->
+                            <div class="en">
+                                <p>Business Owner</p>
+                            </div>
+                            <!-- Portuguese content -->
+                            <div class="pt">
+                                <p>Empresária</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <!-- English content -->
+                        <div class="en">
+                            Punctual and very polite professional. He solved my printer problem remotely in minutes. Highly recommended!
+                        </div>
+                        <!-- Portuguese content -->
+                        <div class="pt">
+                            Profissional pontual e muito educado. Resolveu o problema da minha impressora remotamente em minutos. Super recomendo!
+                        </div>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">PL</div>
+                        <div class="author-info">
+                            <h4>Paulo Lima</h4>
+                            <!-- English content -->
+                            <div class="en">
+                                <p>Residential Client</p>
+                            </div>
+                            <!-- Portuguese content -->
+                            <div class="pt">
+                                <p>Cliente Residencial</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2 class="en">Contact Us</h2>
+                <h2 class="pt">Entre em Contato</h2>
+            </div>
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <h3 class="en">Need help? Talk to me!</h3>
+                    <h3 class="pt">Precisa de ajuda? Fale comigo!</h3>
+                    
+                    <p class="en">I'm available for on-site service in the South Florida area. Contact me for a free quote.</p>
+                    <p class="pt">Estou disponível para atendimento presencial na região da Flórida do Sul. Entre em contato para um orçamento sem compromisso.</p>
+                    
+                    <div class="contact-method">
+                        <div class="contact-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>WhatsApp</h4>
+                            <a href="https://wa.me/19545206762" target="_blank">+1 954 520 6762</a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-method">
+                        <div class="contact-icon">
+                            <i class="far fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Email</h4>
+                            <a href="mailto:marcioalmeid@gmail.com">marcioalmeid@gmail.com</a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-method">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <!-- English content -->
+                            <div class="en">
+                                <h4>Service Area</h4>
+                                <p>South Florida region - On-site service</p>
+                            </div>
+                            <!-- Portuguese content -->
+                            <div class="pt">
+                                <h4>Área de Atendimento</h4>
+                                <p>Região da Flórida do Sul - Atendimento presencial</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-method">
+                        <div class="contact-icon">
+                            <i class="far fa-clock"></i>
+                        </div>
+                        <div class="contact-details">
+                            <!-- English content -->
+                            <div class="en">
+                                <h4>Business Hours</h4>
+                                <p>Flexible scheduling available<br>Contact us to arrange a convenient time</p>
+                            </div>
+                            <!-- Portuguese content -->
+                            <div class="pt">
+                                <h4>Horário de Atendimento</h4>
+                                <p>Horários flexíveis disponíveis<br>Entre em contato para agendar um horário conveniente</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <form action="https://formsubmit.co/marcioalmeid@gmail.com" method="POST">
+                        <div class="form-group">
+                            <label for="name" class="en">Name</label>
+                            <label for="name" class="pt">Nome</label>
+                            <input type="text" id="name" name="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone" class="en">Phone</label>
+                            <label for="phone" class="pt">Telefone</label>
+                            <input type="tel" id="phone" name="phone" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="en">Email</label>
+                            <label for="email" class="pt">Email</label>
+                            <input type="email" id="email" name="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="service" class="en">Service</label>
+                            <label for="service" class="pt">Serviço</label>
+                            <select id="service" name="service" class="form-control" required>
+                                <option value="" class="en">Select a service</option>
+                                <option value="" class="pt">Selecione um serviço</option>
+                                <option value="impressora" class="en">Printer Setup</option>
+                                <option value="impressora" class="pt">Configuração de Impressora</option>
+                                <option value="rede" class="en">Network/Wi-Fi Installation</option>
+                                <option value="rede" class="pt">Instalação de Rede/Wi-Fi</option>
+                                <option value="formatacao" class="en">PC Formatting/Optimization</option>
+                                <option value="formatacao" class="pt">Formatação/Otimização de PC</option>
+                                <option value="virus" class="en">Virus Removal</option>
+                                <option value="virus" class="pt">Remoção de Vírus</option>
+                                <option value="backup" class="en">Data Backup</option>
+                                <option value="backup" class="pt">Backup de Dados</option>
+                                <option value="remoto" class="en">Remote Support</option>
+                                <option value="remoto" class="pt">Suporte Remoto</option>
+                                <option value="outro" class="en">Other</option>
+                                <option value="outro" class="pt">Outro</option>
+                            </select>
+                        </div>
+                        <input type="hidden" name="_subject" value="New Contact Form Submission">
+                        <input type="hidden" name="_template" value="table">
+                        <input type="hidden" name="_next" value="https://marciomendes-tech.github.io/thanks.html">
+                        <button type="submit" class="submit-btn en">Submit</button>
+                        <button type="submit" class="submit-btn pt">Enviar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
-</html> 
+</html>
+
